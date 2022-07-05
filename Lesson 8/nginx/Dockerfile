@@ -1,5 +1,4 @@
-FROM ubuntu:20.04
-RUN apt-get update -y && apt-get install -y nginx
-COPY index.html /var/www/html/
-ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
-EXPOSE 80
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
+WORKDIR /usr/share/nginx/html
+RUN date +%x_%H:%M:%S:%N >> ./index.html
